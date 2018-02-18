@@ -13,7 +13,9 @@ RUN find /etc/systemd/system \
 
 RUN systemctl set-default multi-user.target
 
-RUN apt install -y openssh-server grub2 && \
+RUN apt update && \
+    apt install -y openssh-server grub2 && \
+    apt clean all && \
     touch /boot/grub/grub.cfg
 
 STOPSIGNAL SIGRTMIN+3
